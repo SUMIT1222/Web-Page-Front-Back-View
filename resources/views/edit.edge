@@ -1,0 +1,34 @@
+@layout('layouts.main')
+
+@section('title')
+JobPostr - Edit your Job
+@endsection
+
+@section('extracss')
+{{ style('forms') }}
+@endsection
+
+@section('content')
+  <h1>Edit Job</h1>
+
+
+  <div class="job-container">
+    @if(flashMessage('message'))
+        <span>{{ flashMessage('message') }}</span>
+    @endif
+        <form action="{{ route('JobController.update', { id: user.id }) }}" method="POST">
+          {{ csrfField() }}
+  
+         
+  
+          <label for="username">Username name</label>
+          <input type="text" name="username" value="{{job. username}}">
+          @if(hasErrorFor('username'))
+              <span>
+                  {{ getErrorFor('username') }}
+              </span>
+         
+          <button type="submit">Update Job</button><br>
+        </form>
+    </div>
+@endsection

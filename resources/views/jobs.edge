@@ -1,0 +1,53 @@
+@layout('layouts.main')
+
+@section('title')
+JobPostr - Post your Job
+@endsection
+
+@section('extracss')
+{{ style('forms') }}
+@endsection
+
+@section('content')
+  
+
+
+  <div class="job-container">
+    @if(flashMessage('message'))
+        <span>{{ flashMessage('message') }}</span>
+    @endif
+        <form action="{{ route('JobController.create') }}" method="POST">
+          {{ csrfField() }}
+  
+          <label for="name">Name</label>
+          <input type="text" name="name" value="{{ old('name', '') }}">
+          @if(hasErrorFor('name'))
+              <span>
+                  {{ getErrorFor('') }}
+              </span>
+          @endif
+  
+         
+  
+          
+  
+          <button type="submit">Submit</button>
+        </form>
+    </div>
+
+<h2>User List</h2>
+
+  @each(job in jobs)
+  <div class="job-container2">
+    <div class="blank"></div>
+    <div class="job-info">
+
+      
+      <ul>
+          <li><a href="{{ route('JobController.delete', { id: job.id }) }}">Delete</a></li>
+          <li><a href="{{ route('JobController.edit', { id: job.id }) }}">Edit</a></li>
+      </ul>
+    </div>
+  </div>
+  @endeach
+@endsection
