@@ -35,17 +35,11 @@ class JobController{
     async edit({ params, view }) {
         const job = await Job.find(params.id);
         return view.render('edit', { job: job });
-    }
+    
 
-    async update ({ response, request, session, params }) {
-        const job = await Job.find(params.id);
+   
 
-        job.title = request.all().username;
-       
-        await job.save();
-
-        session.flash({ message: 'Your job has been updated. '});
-        return response.redirect('/post-a-job');
+        
     }
 
 }

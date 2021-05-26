@@ -8,7 +8,6 @@ class JobsSchema extends Schema {
     this.create('jobs', (table) => {
       table.increments()
       table.string('username')
-      
       table.integer('user_id')
       table.timestamps()
     })
